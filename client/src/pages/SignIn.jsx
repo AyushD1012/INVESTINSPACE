@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { UseDispatch, useSelector } from "react-redux";
-import { signInStart, signInSuccess,signInFailure } from "../redux/user/userSlice.js";
+import { useDispatch, useSelector } from "react-redux";
+import { signInStart, signInSuccess,signInFailure } from "../redux/user/userSlice";
 
 export default function SignIn() {
   const [formData, setFormData] = useState({});
   // const [error,setError]=useState(null);
 
   // const [loading, setLoading]=useState(false);
-const {error,loading}=useSelector((state)=>state.user);
+const {loading ,error}=useSelector((state)=>state.user);
 
   const navigate=useNavigate();
   const dispatch=useDispatch();
