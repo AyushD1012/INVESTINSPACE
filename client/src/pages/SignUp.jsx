@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import OAuth from "../Components/OAuth";
 
 export default function SignUp() {
   const [formData, setFormData] = useState({});
@@ -21,7 +22,7 @@ export default function SignUp() {
       setLoading(true);
 
       const res = await fetch("/api/auth/signup", {
-        method: "POST",
+        method: 'POST',
         headers: {
           "Content-Type": "application/json",
         },
@@ -49,33 +50,33 @@ export default function SignUp() {
         <input
           type="text"
           placeholder="Username"
-          className="border p-3 rounded-lg"
+          className="border p-3 h-16 text-xl rounded-lg"
           id="username"
           onChange={handleChange}
         />
         <input
           type="email"
           placeholder="Email"
-          className="border p-3 rounded-lg"
+          className="border p-3 h-16 text-xl rounded-lg"
           id="email"
           onChange={handleChange}
         />
         <input
           type="password"
           placeholder="Password"
-          className="border p-3 rounded-lg"
+          className="border p-3 h-16 text-xl rounded-lg"
           id="password"
           onChange={handleChange}
         />
         <button
           disabled={loading}
-          className="border bg-blue-800 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
+          className="border bg-blue-800 text-white p-3 h-16 text-xl rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
         >
           {loading ? "loading..." : "Sign Up"}
         </button>
         <OAuth/>
       </form>
-      <div className="flex gap-2 mt-5">
+      <div className="flex gap-2 text-xl mt-5">
         <p>Have an account?</p>
         <Link to={"/sign-in"}>
           <span className="text-blue-700">Sign in</span>

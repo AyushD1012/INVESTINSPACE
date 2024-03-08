@@ -127,8 +127,8 @@ const handleSignOut=async()=>{
   }
 }
   return (
-    <div className="bg-white rounded-lg max-w-4xl mx-auto">
-      <h1 className="text-3xl font-semibold my-10 p-2  text-center ">{currentUser.username}</h1>
+    <div className="bg-white  rounded-lg max-w-3xl mx-auto">
+      <h1 className="text-4xl font-semibold my-10 p-2  text-center ">{currentUser.username}</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-5">
         <input onChange={(e)=>setFile(e.target.files[0])} type="file" ref={fileRef} hidden accept="image/*" />
       <img onClick={()=> fileRef.current.click()} className="h-44 w-44 hover:opacity-95  rounded-full self-center mt-2 object-cover cursor-pointer" src={formData.avatar || currentUser.avatar} alt="profile" />
@@ -144,10 +144,10 @@ const handleSignOut=async()=>{
         )
       }
         </p> 
-      <input className="border p-3 mx-3 rounded-lg" type="text" defaultValue={currentUser.username} placeholder="Username" id="username" onChange={handleChange} />
-      <input className="border p-3 mx-3 rounded-lg" type="text" defaultValue={currentUser.email} placeholder="Email Id" id="email" onChange={handleChange}/>
-      <input className="border p-3 mx-3 rounded-lg" type="password"  placeholder="Password" id="password" onChange={handleChange}/>
-      <button disabled={loading} className="bg-blue-700 p-3 mx-3 rounded-lg text-white text-xl hover:opacity-95 uppercase disabled:opacity-80">{loading ? "loading..." : "Update"}</button>
+      <input className="border p-3 mx-3 h-16 text-xl rounded-lg" type="text" defaultValue={currentUser.username} placeholder="Username" id="username" onChange={handleChange} />
+      <input className="border p-3 mx-3 h-16  text-xl rounded-lg" type="text" defaultValue={currentUser.email} placeholder="Email Id" id="email" onChange={handleChange}/>
+      <input className="border p-3 mx-3 h-16 text-xl rounded-lg" type="password"  placeholder="Password" id="password" onChange={handleChange}/>
+      <button disabled={loading} className="bg-blue-700 p-3 mx-3 h-16  rounded-lg text-white text-xl hover:opacity-95 uppercase disabled:opacity-80">{loading ? "loading..." : "Update"}</button>
       </form>
       <div className="flex justify-between mt-5 p-2">
         <span onClick={handleDeleteUser} className="text-xl text-red-600 cursor-pointer">Delete account</span>

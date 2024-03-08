@@ -37,6 +37,6 @@ const result= await signInWithPopup(auth,provider);
     };
 
   return (
-    <button onClick={handleGoogleClick} type='button' className='bg-red-500 p-3 text-white rounded-lg hover:opacity-95 uppercase'>Continue With google</button>
+    <button onClick={handleGoogleClick} type='button' className='bg-red-500 p-3 text-xl h-16 text-white rounded-lg hover:opacity-95 uppercase'>Continue With google</button>
       )
 }
