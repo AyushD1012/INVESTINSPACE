@@ -82,7 +82,7 @@ const handleSubmit=async (e)=>{
     dispatch(updateUserSuccess(data));
     setUpdateSuccess(true);
   } catch (error) {
-    dispatch(updateUserFailure(error));
+    dispatch(updateUserFailure(error.message));
     
   }
 }
@@ -153,7 +153,7 @@ const handleSignOut=async()=>{
         <span onClick={handleDeleteUser} className="text-xl text-red-600 cursor-pointer">Delete account</span>
         <span onClick={handleSignOut} className="text-xl text-red-600 cursor-pointer">Sign out</span>
       </div>
-      <p className="text-red-600 mt-5">{error ?  error : ''}</p>
+      <p className="text-red-600 mt-5">{error ?  error.message : ''}</p>
       <p className="text-green-600 mt-5">{updateSuccess ?  'User is updated successfully!' : ''}</p>
     </div>
 
