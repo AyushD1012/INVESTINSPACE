@@ -8,6 +8,8 @@ import { app } from "../firebase";
 import { useState } from "react";
 import {useSelector} from "react-redux"
 import {useNavigate} from "react-router-dom"
+import { Link } from "react-router-dom";
+
 
 export default function CreateListing() {
   const [files, setFiles] = useState([]);
@@ -335,6 +337,8 @@ const handleSubmit=async (e)=>{
               {loading ? 'Creating...' : 'Create Listing'}
             </button>
             {error && <p className="text-red-600 text-sm">{error}</p>}
+            
+            
           </div>
         </div>
       </form>
