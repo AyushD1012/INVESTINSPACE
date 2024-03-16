@@ -349,7 +349,7 @@ import {
               ))}
             <div>
                 <Link to={'/profile'}>
-                <button disabled={loading || uploading} className=" w-full  uppercase p-4  text-xl bg-green-600 rounded-lg text-white hover:opacity-95 disabled:opacity-80">
+                <button disabled={loading || uploading} onClick={handleSubmit} className=" w-full  uppercase p-4  text-xl bg-green-600 rounded-lg text-white hover:opacity-95 disabled:opacity-80">
                 {loading ? 'Updating...' : 'Update Listing'}
               </button>
               </Link>
