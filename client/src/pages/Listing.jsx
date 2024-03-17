@@ -4,14 +4,24 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore from "swiper";
 import { Navigation } from "swiper/modules";
 import "swiper/css/bundle";
-import { FaBath, FaBed, FaChair, FaMapMarkerAlt, FaParking } from "react-icons/fa";
+import { useSelector } from "react-redux";
+import {
+  FaBath,
+  FaBed,
+  FaChair,
+  FaMapMarkerAlt,
+  FaParking,
+} from "react-icons/fa";
+import Contact from "../Components/Contact";
 
 export default function Listing() {
   SwiperCore.use([Navigation]);
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [contact,setContact] = useState(false);
   const params = useParams();
+  const { currentUser } = useSelector((state) => state.user);
 
   useEffect(() => {
     const fetchListing = async () => {
@@ -64,7 +74,7 @@ export default function Listing() {
             ))}
           </Swiper>
 
-          <div className="flex flex-col  max-w-5xl mx-auto p-3 my-7 gap-4">
+          <div className="flex flex-col  max-w-5xl mx-auto p-3 my-7 gap-6">
             <p className="text-3xl font-semibold">
               {listing.name} -${" "}
               {listing.offer
@@ -77,12 +87,13 @@ export default function Listing() {
               {listing.address}
             </p>
             <div className="flex gap-4">
-              <p className="bg-red-700 w-full max-w-[200px] text-white text-center p-1 rounded-md">
+              <p className="bg-red-700 w-full  max-w-[200px] text-white text-center p-1 rounded-md">
                 {listing.type === "rent" ? "For Rent" : "For Sale"}
-
               </p>
               {listing.offer && (
-                <p className="bg-green-700 text-white max-w-[200px] w-full rounded-md text-center p-1">${+listing.regularPrice - +listing.regularPrice} OFF</p>
+                <p className="bg-green-700 text-white max-w-[200px] w-full rounded-md text-center p-1">
+                  ${+listing.regularPrice - +listing.regularPrice} OFF
+                </p>
               )}
             </div>
             <p className="text-xl text-slate-700">
@@ -104,17 +115,19 @@ export default function Listing() {
               </li>
               <li className="flex items-center text-xl gap-2">
                 <FaParking className="text-2xl text-blue-800 " />
-                {listing.parking > 1
-                  ? 'With Parking'
-                  : 'No Parking'}
+                {listing.parking > 1 ? "With Parking" : "No Parking"}
               </li>
               <li className="flex items-center text-xl gap-2">
                 <FaChair className="text-2xl text-blue-800 " />
-                {listing.furnished > 1
-                  ? 'Furnished'
-                  : 'Unfurnished'}
+                {listing.furnished > 1 ? "Furnished" : "Unfurnished"}
               </li>
             </ul>
+            {currentUser && listing.userRef !== currentUser._id && !contact &&(
+              <button onClick={()=>setContact(true)} className="hover:opacity-95 bg-blue-800 rounded-lg text-white text-2xl h-[50px] p-1 w-full text-center">
+                Contact with Owner
+              </button>
+            )}
+            {contact && <Contact listing={listing}/>}
           </div>
         </div>
       )}
