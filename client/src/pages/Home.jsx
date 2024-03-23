@@ -72,11 +72,14 @@ export default function Home() {
           </Link>
         </div>
       </div>
+      <div>
+        <h1 className="text-2xl font-semibold text-cyan-900 p-3 gap-2">Some recent Listings</h1>
       <Swiper navigation>
         {offerListings &&
           offerListings.length > 0 &&
           offerListings.map((listing) => (
             <SwiperSlide>
+              <Link to={`/listing/${listing._id}`}>
               <div
                 style={{
                   background: `url(${listing.imageURLs[0]}) center no-repeat`,
@@ -85,9 +88,13 @@ export default function Home() {
                 className="h-[500px]  "
                 key={listing._id}
               ></div>
+              </Link>
+             
             </SwiperSlide>
           ))}
       </Swiper>
+      </div>
+      
       <div className="w-full mx-auto p-3 flex flex-col gap-4 my-10">
         {offerListings && offerListings.length > 0 && (
           <div className="">

@@ -13,8 +13,6 @@ export default {
     // ...
   ],
   
-    backgroundImage: {
-      'hero': "url('../client/src/photo/New_York_Midtown_Skyline_at_night.jpg')",
-    },
+    
 
 }

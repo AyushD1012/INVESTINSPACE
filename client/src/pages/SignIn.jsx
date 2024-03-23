@@ -74,9 +74,16 @@ const {loading ,error}=useSelector((state)=>state.user);
       <div className="flex text-xl gap-2 mt-5 ">
         <p>Dont have an account?</p>
         <Link to={"/sign-up"}>
-          <span className="text-blue-700">Sign up</span>
+          <span className="text-blue-700 hover:underline">Sign up</span>
         </Link>
       </div>
+      <div className="flex text-xl mt-5 ">
+       
+        <Link to={"/forget-password"}>
+          <span className="text-blue-700 hover:underline">Forget password</span>
+        </Link>
+      </div>
+     
 
       {error && <p className="text-red-500 mt-5">{error}</p>}
     </div>

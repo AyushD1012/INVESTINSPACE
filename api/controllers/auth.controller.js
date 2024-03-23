@@ -90,3 +90,21 @@ export const signout=async(req,res,next) => {
     }
     
 }
+export const forgetpassword=async(req,res,next) => {
+    
+   
+    try{
+
+        const forgetpassword=await User.findByIdAndUpdate(req.params.id,{
+            $set:{
+                password:req.body.password,
+                
+            }
+        },{new:true});
+       
+    }catch(error){
+        next(error);
+
+    }
+    
+}

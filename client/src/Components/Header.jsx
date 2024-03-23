@@ -28,36 +28,36 @@ const navigate=useNavigate();
 
   },[location.search]);
   return (
-    <header className='bg-blue-200 shadow-md'>
+    <header className="bg-sky-300 shadow-md">
       <div className='flex justify-between items-center max-w-6xl mx-auto p-3'>
         <Link to='/'>
         <h1 className='font-bold text-sm sm:text-xl flex flex-wrap'>
-        <span className='text-blue-500'>INVEST</span>
+        <span className='text-blue-900'>INVEST</span>
         <span className='text-red-700'>&</span>
-        <span className='text-blue-900'>SCAPE</span>
+        <span className='text-gray-900'>SCAPE</span>
         </h1>
         </Link> 
 
-        <form onClick={handleSubmit} className='bg-blue-100 p-3 rounded-lg flex items-center'>
+        <form onClick={handleSubmit} className='bg-blue-100 p-3 rounded-lg flex items-center w-1/3 justify-between'>
           <input onChange={(e)=>setSearchTerm(e.target.value)} value={searchTerm} type="text" placeholder='Search...' className='bg-transparent focus:outline-none w-24 sm:w-64'/>
           <button>
-          <FaSearch className='text-slate-700'></FaSearch>
+          <FaSearch className='text-slate-700 '></FaSearch>
           </button>
           
         </form>
-        <ul className='flex gap-4'>
+        <ul className='flex gap-4 w-1/4'>
           
         <Link to='/'>
-          <li className='hidden sm:inline text-slate-700 hover:underline'>Home</li>
+          <li className='hidden sm:inline text-black hover:underline'>Home</li>
           </Link>
           <Link to='/about'>
 
-          <li className='hidden sm:inline text-slate-700 hover:underline'>About</li>
+          <li className='hidden sm:inline text-black hover:underline'>About</li>
           </Link>
           <Link to='/profile'>
             {currentUser ? (
               <img className='rounded-full h-8 w-8 object-cover' src={currentUser.avatar} alt="profile" />
-            ):( <li className=' text-slate-700 hover:underline'>Sign in</li>)}
+            ):( <li className=' text-black hover:underline'>Sign in</li>)}
          
           </Link>
           
