@@ -8,8 +8,8 @@ export default function SignIn() {
   const [formData, setFormData] = useState({});
   // const [error,setError]=useState(null);
 
-  // const [loading, setLoading]=useState(false);
-const {loading ,error}=useSelector((state)=>state.user);
+  const [loading, setLoading]=useState(false);
+const {error}=useSelector((state)=>state.user);
 
   const navigate=useNavigate();
   const dispatch=useDispatch();
@@ -25,6 +25,7 @@ const {loading ,error}=useSelector((state)=>state.user);
     e.preventDefault();
     try {
    dispatch(signInStart());
+   setLoading(true);
 
     const res = await fetch('/api/auth/signin', {
       method: 'POST',
@@ -36,16 +37,20 @@ const {loading ,error}=useSelector((state)=>state.user);
     const data=await res.json();
     if(data.success===false){
     dispatch(signInFailure(data.message));
+    setLoading(false);
       return;
     }
     
+    
     dispatch(signInSuccess(data));
     navigate('/');
+    setLoading(false);
     } catch (error) {
       dispatch(signInFailure(error.message));
     }
     
   };
+  
   
   return (
     <div className="bg-white m-24 h-full rounded-2xl p-3 max-w-lg mx-auto">
@@ -79,7 +84,7 @@ const {loading ,error}=useSelector((state)=>state.user);
       </div>
       <div className="flex text-xl mt-5 ">
        
-        <Link to={"/forget-password"}>
+        <Link to={"/forgot-password"}>
           <span className="text-blue-700 hover:underline">Forget password</span>
         </Link>
       </div>

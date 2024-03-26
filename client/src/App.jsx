@@ -8,9 +8,9 @@ import Header from "./Components/Header";
 import PrivateRoute from "./Components/PrivateRoute";
 import CreateListing from "./pages/CreateListing";
 import UpdateListing from "./pages/UpdateListing";
-import Listing from "./pages/Listing";
+import Listing from "./pages/Listing"
 import Search from "./pages/Search";
-import Forgetpassword from "./pages/Forgetpassword";
+import Forgotpassword from "./pages/Forgotpassword";
 
 export default function App() {
   return (
@@ -21,7 +21,7 @@ export default function App() {
       <Route path="/" element={<Home />}/>
       <Route path="/sign-in" element={<SignIn />}/>
       <Route path="/sign-up" element={<SignUp/>}/>
-      <Route path="/forget-password" element={<Forgetpassword/>}/>
+      <Route path="/forgot-password" element={<Forgotpassword/>}/>
       
       
       <Route path="/about" element={<About />}/>
