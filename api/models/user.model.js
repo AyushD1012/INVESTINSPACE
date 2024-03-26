@@ -19,6 +19,12 @@ const userSchema=new mongoose.Schema({
         required:true
 
     },
+    confirm_password:{
+        type:String,
+        required:true
+
+    },
+
     avatar:{
         type:String,
         default:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTcoK-dlbjL7C1eAPifV1gUs2n6ukUugyM-J5wFbSEptPEn7GCoJXnFXMDlp9SdP-JcIQ&usqp=CAU"

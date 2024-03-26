@@ -1,5 +1,5 @@
 import User from "../models/user.model.js";
-import bcryptjs from "bcryptjs";
+import bcrypt from "bcryptjs";
 import { errorHandler } from "../utils/error.js";
 import nodemailer from "nodemailer";
 
@@ -24,7 +24,7 @@ export const signin = async (req, res, next) => {
   try {
     const validUser = await User.findOne({ email });
     if (!validUser) return next(errorHandler(404, "User not found"));
-    const validPassword = bcryptjs.compareSync(password, validUser.password);
+    const validPassword = bcrypt.compareSync(password, validUser.password);
     if (!validPassword) return next(errorHandler(401, "Wrong credentials"));
 
     const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET);
@@ -88,18 +88,15 @@ export const signout = async (req, res, next) => {
   }
 };
 
-
-
-
 export const forgotpassword = async (req, res, next) => {
   const { email } = req.body;
-try{
-
+  try {
     const validUser = await User.findOne({ email });
     if (!validUser) return next(errorHandler(404, "User not found"));
 
-    const token = jwt.sign({ email: validUser.email }, process.env.JWT_SECRET,{expiresIn:'5m'});
-
+    const token = jwt.sign({ email: validUser.email }, process.env.JWT_SECRET, {
+      expiresIn: "5m",
+    });
 
     const transporter = nodemailer.createTransport({
       service: "gmail",
@@ -116,7 +113,7 @@ try{
       from: "dubeyayush1012@gmail.com",
       to: email,
       subject: "Reset your password",
-      text: `http://localhost:5173/resetPassword/${token}`,
+      text: `http://localhost:5173/reset-password/${validUser._id}/${token}`,
     };
 
     transporter.sendMail(mailOptions, function (error) {
@@ -124,15 +121,42 @@ try{
         console.log(error);
       } else {
         return res.status(200).json({
-          success:true,
-          message:`Reset token is sent to ${validUser} `,
-
+          success: true,
+          message: `Reset token is sent to ${validUser} `,
         });
       }
     });
-}catch(error){
+  } catch (error) {
+    next(error);
+  }
+};
+export const resetpassword = async (req, res, next) => {
+  const { id,token } = req.params;
+  const { password } = req.body;
+  const { confirm_password } = req.body;
+  
+
+  try {
+    // const validUser=await User.findOne({params});
+    // if(!validUser) return next(errorHandler(404, "User not found"));
+    
+    if (confirm_password !== password) {
+      res.json({
+        message: "confirm password does not match",
+      });
+    }
+
+    const hashedPassword = bcrypt.hashSync(password, 10);
+    const update = await User.findByIdAndUpdate({_id:id},{
+      password: hashedPassword,
+    });
+
+    return res.status(200).json({
+      success: true,
+      message: "Password has been updated",
+    });
+  } catch (error) {
+    
   next(error);
-}
-
-
+  }
 };

@@ -11,6 +11,7 @@ import UpdateListing from "./pages/UpdateListing";
 import Listing from "./pages/Listing"
 import Search from "./pages/Search";
 import Forgotpassword from "./pages/Forgotpassword";
+import ResetPassword from "./pages/ResetPassword";
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
       <Route path="/sign-in" element={<SignIn />}/>
       <Route path="/sign-up" element={<SignUp/>}/>
       <Route path="/forgot-password" element={<Forgotpassword/>}/>
+      <Route path="/reset-password/:id/:token" element={<ResetPassword/>}/>
       
       
       <Route path="/about" element={<About />}/>
