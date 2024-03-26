@@ -99,28 +99,23 @@ export const forgotpassword = async (req, res, next) => {
     });
 
     const transporter = nodemailer.createTransport({
-      service: "gmail",
-      host: "smtp.gmail.com",
-      
-      tls: {
-        ciphers: "SSLv3",
-    },
-    port: 465,
-      secure: false,
+      host: "smtp.ethereal.email",
+      port: 587,
+      secure: false, 
       auth: {
-        user: "dubeyayush1012@gmail.com",
-        pass: process.env.pass_mailer,
+        user: "lucius30@ethereal.email",
+        pass: "t4KGxBxBkwVpCUJtvw",
       },
     });
 
     const mailOptions = {
-      from: "dubeyayush1012@gmail.com",
+      from: "lucius30@ethereal.email",
       to: email,
       subject: "Reset your password",
       text: `http://localhost:5173/reset-password/${validUser._id}/${token}`,
     };
 
-    transporter.sendMail(mailOptions, function (error) {
+    transporter.sendMail(mailOptions, function (error,info) {
       if (error) {
         console.log(error);
       } else {
@@ -128,6 +123,7 @@ export const forgotpassword = async (req, res, next) => {
           success: true,
           message: `Reset token is sent to ${validUser} `,
         });
+        
       }
     });
   } catch (error) {
