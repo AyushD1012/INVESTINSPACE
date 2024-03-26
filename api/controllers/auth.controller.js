@@ -99,17 +99,22 @@ export const forgotpassword = async (req, res, next) => {
     });
 
     const transporter = nodemailer.createTransport({
-      host: "smtp.ethereal.email",
-      port: 587,
-      secure: false, 
+      service: "gmail",
+      host: "smtp.gmail.com",
+      
+      tls: {
+        ciphers: "SSLv3",
+    },
+    port: 465,
+      secure: false,
       auth: {
-        user: "lucius30@ethereal.email",
-        pass: "t4KGxBxBkwVpCUJtvw",
+        user: "dubeyayush1012@gmail.com",
+        pass: process.env.pass_mailer,
       },
     });
 
     const mailOptions = {
-      from: "lucius30@ethereal.email",
+      from: "dubeyayush1012@gmail.com",
       to: email,
       subject: "Reset your password",
       text: `http://localhost:5173/reset-password/${validUser._id}/${token}`,
