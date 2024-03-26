@@ -41,7 +41,7 @@ export default function Forgetpassword() {
       console.log(error);
     }
   };
-  console.log(formData);
+  
   return (
     <div className="bg-white m-24 h-full rounded-2xl p-3 max-w-lg mx-auto">
       <h1 className="text-3xl text-center font-semibold my-7">
