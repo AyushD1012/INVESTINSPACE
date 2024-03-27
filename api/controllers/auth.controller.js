@@ -142,20 +142,13 @@ export const forgotpassword = async (req, res, next) => {
 export const resetpassword = async (req, res, next) => {
   const { id,token } = req.params;
   const { password } = req.body;
-  const { confirm_password } = req.body;
+  
   
 
   try {
-    // const validUser=await User.findOne({params});
-    // if(!validUser) return next(errorHandler(404, "User not found"));
+   
     
-    if (confirm_password !== password) {
-      res.json({
-        message: "confirm password does not match",
-      });
-    }
-
-    const hashedPassword = bcrypt.hashSync(password, 10);
+      const hashedPassword = bcrypt.hashSync(password, 10);
     const update = await User.findByIdAndUpdate({_id:id},{
       password: hashedPassword,
     });
@@ -164,6 +157,8 @@ export const resetpassword = async (req, res, next) => {
       success: true,
       message: "Password has been updated",
     });
+    
+
   } catch (error) {
     
   next(error);

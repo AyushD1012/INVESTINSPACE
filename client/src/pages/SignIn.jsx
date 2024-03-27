@@ -85,7 +85,7 @@ const {error}=useSelector((state)=>state.user);
       <div className="flex text-xl mt-5 ">
        
         <Link to={"/forgot-password"}>
-          <span className="text-blue-700 hover:underline">Forget password</span>
+          <span className="text-blue-700 hover:underline">Forgot password</span>
         </Link>
       </div>
      

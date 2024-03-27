@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { forgetpasswordstart } from "../redux/user/userSlice";
+
 import { useDispatch } from "react-redux";
 
 export default function Forgetpassword() {
@@ -12,7 +12,7 @@ export default function Forgetpassword() {
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      
+
       [e.target.id]: e.target.value,
     });
   };
@@ -20,10 +20,10 @@ export default function Forgetpassword() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('/api/auth/forgotpassword', {
-        method: 'POST',
+      const res = await fetch("/api/auth/forgotpassword", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
@@ -31,21 +31,20 @@ export default function Forgetpassword() {
       const data = await res.json();
 
       if (data.success === false) {
-    
         return;
       }
+      
       alert("check your email for reset password link");
       navigate("/sign-in");
-     
     } catch (error) {
       console.log(error);
     }
   };
-  
+
   return (
     <div className="bg-white m-24 h-full rounded-2xl p-3 max-w-lg mx-auto">
       <h1 className="text-3xl text-center font-semibold my-7">
-        Forget Password
+        Forgot Password
       </h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input
@@ -66,6 +65,8 @@ export default function Forgetpassword() {
           <span className="text-blue-700 hover:underline">Sign up</span>
         </Link>
       </div>
+
+      
     </div>
   );
 }

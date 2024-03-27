@@ -43,7 +43,7 @@ export default function ResetPassword() {
       console.log(error);
     }
   };
-  console.log(formData)
+  
 
   return (
     <div className="bg-white m-24 h-full rounded-2xl p-3 max-w-lg mx-auto">
@@ -56,17 +56,11 @@ export default function ResetPassword() {
           placeholder="New Password"
           className="border p-3 h-16 text-xl rounded-lg"
           id="password"
+          required
           onChange={handleChange}
         
         />
-      <input 
-          type="confirm_password"
-          placeholder="Confirm Password"
-          className="border p-3 h-16 text-xl rounded-lg"
-          id="confirm_password"
-          onChange={handleChange}
-        
-        />
+     
 
         <button className="border h-16 bg-blue-800 text-xl text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80">
           Update
