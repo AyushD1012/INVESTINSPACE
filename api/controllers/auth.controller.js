@@ -119,8 +119,8 @@ export const forgotpassword = async (req, res, next) => {
       subject: "Reset your password",
       html: `<h1>Reset Your Password</h1>
       <p>Click on the following link to reset your password:</p>
-      <a href="http://localhost:5173/reset-password/${validUser._id}/${token}">http://localhost:5173/reset-password/${validUser._id}/${token}</a>
-      <p>The link will expire in 10 minutes.</p>
+      <a classname="text-blue-600 hover:underline" href="${process.env.ORIGIN}/reset-password/${validUser._id}/${token}">Reset Password</a>
+      <p>The link will expire in 5 minutes.</p>
       <p>If you didn't request a password reset, please ignore this email.</p>`,
     };
 
