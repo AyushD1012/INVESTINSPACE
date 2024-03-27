@@ -117,7 +117,11 @@ export const forgotpassword = async (req, res, next) => {
       from: "dubeyayush1012@gmail.com",
       to: email,
       subject: "Reset your password",
-      text: `https://localhost:5173/reset-password/${validUser._id}/${token}`,
+      html: `<h1>Reset Your Password</h1>
+      <p>Click on the following link to reset your password:</p>
+      <a href="http://localhost:5173/reset-password/${validUser._id}/${token}">http://localhost:5173/reset-password/${validUser._id}/${token}</a>
+      <p>The link will expire in 10 minutes.</p>
+      <p>If you didn't request a password reset, please ignore this email.</p>`,
     };
 
     transporter.sendMail(mailOptions, function (error,info) {
