@@ -100,7 +100,13 @@ export const forgotpassword = async (req, res, next) => {
 
     const transporter = nodemailer.createTransport({
       service: "gmail",
+      host: "smtp.gmail.com",
       
+      tls: {
+        ciphers: "SSLv3",
+    },
+    port: 465,
+      secure: false,
       auth: {
         user: "dubeyayush1012@gmail.com",
         pass: process.env.pass_mailer,
@@ -111,7 +117,7 @@ export const forgotpassword = async (req, res, next) => {
       from: "dubeyayush1012@gmail.com",
       to: email,
       subject: "Reset your password",
-      text: `http://localhost:5173/reset-password/${validUser._id}/${token}`,
+      text: `https://localhost:5173/reset-password/${validUser._id}/${token}`,
     };
 
     transporter.sendMail(mailOptions, function (error,info) {
